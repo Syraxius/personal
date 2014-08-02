@@ -80,7 +80,7 @@ public class DeciderTUI {
 			for (Answer answer:answers) {
 				System.out.println(++i+") "+answer.getAnswer());
 			}
-			System.out.println(i+1+") Return to Main Menu");
+			System.out.println(i+1+") Return to Manage Question");
 			System.out.println();
 			System.out.print("Please select your choice: ");
 			int choice=sc.nextInt();
@@ -286,7 +286,7 @@ public class DeciderTUI {
 		} else {
 			float[] scoreList = new float[answers.size()];
 			int i=0;
-			float maxScore=0;
+			float maxScore=Float.MIN_VALUE;
 			int maxIdx=0;
 			for (Answer answer:answers) {
 				float currentScore = answer.tallyScore();
