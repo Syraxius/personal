@@ -19,16 +19,28 @@ public class Answer {
 		return this.answer;
 	}
 	
-	public void addPro(String description, float score) {
-		pros.add(new Modifier(description, score));
+	public Modifier addPro(String description, float score) {
+		Modifier newModifier = new Modifier(description, score);
+		pros.add(newModifier);
+		return newModifier;
+	}
+	
+	public void removePro(int number) {
+		pros.remove(number);
 	}
 	
 	public ArrayList<Modifier> getPros() {
 		return pros;
 	}
 	
-	public void addCon(String description, float score) {
-		cons.add(new Modifier(description, score));
+	public Modifier addCon(String description, float score) {
+		Modifier newModifier = new Modifier(description, score);
+		cons.add(newModifier);
+		return newModifier;
+	}
+	
+	public void removeCon(int number) {
+		cons.remove(number);
 	}
 	
 	public ArrayList<Modifier> getCons() {

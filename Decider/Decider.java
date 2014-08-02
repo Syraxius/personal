@@ -16,4 +16,8 @@ public class Decider {
 	public ArrayList<Question> getQuestions() {
 		return this.questions;
 	}
+	
+	public void removeQuestion(int number) {
+		questions.remove(number);
+	}
 }

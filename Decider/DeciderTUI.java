@@ -13,9 +13,10 @@ public class DeciderTUI {
 			System.out.println("---------");
 			System.out.println();
 			System.out.println("1) Add Question");
-			System.out.println("2) Manage Questions");
-			System.out.println("3) View Questions");
-			System.out.println("4) Exit");
+			System.out.println("2) Remove Questions");
+			System.out.println("3) Manage Questions");
+			System.out.println("4) View Questions");
+			System.out.println("5) Exit");
 			System.out.println();
 			System.out.print("Please select your choice: ");
 			choice = sc.nextInt();
@@ -25,17 +26,70 @@ public class DeciderTUI {
 					add(decider);
 				break;
 				case 2:
-					manage(decider);
+					remove(decider);
 				break;
 				case 3:
-					view(decider);
+					manage(decider);
 				break;
 				case 4:
+					view(decider);
+				break;
+				case 5:
 					System.out.println();
 					System.out.println("Thank you for using Decider!");
 				break;
 			}
-		} while (choice!=4);
+		} while (choice!=5);
+	}
+	
+	private static void remove(Decider decider) {
+		System.out.println();
+		System.out.println("----------------");
+		System.out.println("Remove Questions");
+		System.out.println("----------------");
+		ArrayList<Question> questions = decider.getQuestions();
+		System.out.println();
+		if (questions.size()==0) {
+			System.out.println("There are no questions defined yet!");
+		} else {
+			int i=0;
+			for (Question question:questions) {
+				System.out.println(++i+") "+question.getQuestion());
+			}
+			System.out.println(i+1+") Return to Main Menu");
+			System.out.println();
+			System.out.print("Please select your choice: ");
+			int choice=sc.nextInt();
+			if (choice!=i+1) {
+				decider.removeQuestion(choice-1);
+			}
+		}
+	}
+	
+	private static void remove(Question question) {
+		System.out.println();
+		System.out.println("--------------");
+		System.out.println("Remove Answers");
+		System.out.println("--------------");
+		ArrayList<Answer> answers = question.getAnswers();
+		System.out.println();
+		if (answers.size()==0) {
+			System.out.println("There are no answers defined yet!");
+		} else {
+			int i=0;
+			for (Answer answer:answers) {
+				System.out.println(++i+") "+answer.getAnswer());
+			}
+			System.out.println(i+1+") Return to Main Menu");
+			System.out.println();
+			System.out.print("Please select your choice: ");
+			int choice=sc.nextInt();
+			if (choice!=i+1) {
+				question.setSuggestedDecision(null);
+				question.setActualDecision(null);
+				question.removeAnswer(choice-1);
+			}
+		}
 	}
 	
 	private static void add(Decider decider) {
@@ -97,10 +151,11 @@ public class DeciderTUI {
 		System.out.println(question.getQuestion());
 		System.out.println();
 		System.out.println("1) Add Answer");
-		System.out.println("2) Manage Answers");
-		System.out.println("3) Random Decision");
-		System.out.println("4) Tallied Decision");
-		System.out.println("5) Return to Main Menu");
+		System.out.println("2) Remove Answers");
+		System.out.println("3) Manage Answers");
+		System.out.println("4) Random Decision");
+		System.out.println("5) Tallied Decision");
+		System.out.println("6) Return to Main Menu");
 		System.out.println();
 		System.out.print("Please select your choice: ");
 		choice = sc.nextInt();
@@ -110,16 +165,19 @@ public class DeciderTUI {
 				add(question);
 			break;
 			case 2:
-				manageAnswers(question);
+				remove(question);
 			break;
 			case 3:
-				random(question);
+				manageAnswers(question);
 			break;
 			case 4:
+				random(question);
+			break;
+			case 5:
 				tally(question);
 			break;
 		}
-		} while (choice!=5);
+		} while (choice!=6);
 	}
 	
 	private static void manage(Answer answer) {

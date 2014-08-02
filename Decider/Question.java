@@ -25,6 +25,10 @@ public class Question {
 		return newAnswer;
 	}
 	
+	public void removeAnswer(int number) {
+		answers.remove(number);
+	}
+	
 	public ArrayList<Answer> getAnswers() {
 		return this.answers;
 	}
