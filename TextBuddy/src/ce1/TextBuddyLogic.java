@@ -31,7 +31,7 @@ public class TextBuddyLogic {
 	private void initializeFile() {
 		if (!Files.exists(path)) {
 			try {
-				Files.write(path, new byte[0],
+				Files.write(path, new byte[0], StandardOpenOption.CREATE,
 						StandardOpenOption.TRUNCATE_EXISTING);
 			} catch (IOException e) {
 			}
@@ -42,7 +42,6 @@ public class TextBuddyLogic {
 		try {
 			list = Files.readAllLines(path);
 		} catch (Exception e) {
-			System.exit(1);
 		}
 	}
 

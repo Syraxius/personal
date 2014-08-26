@@ -18,13 +18,18 @@ public class TextBuddyTUI {
 
 	private static final String ERROR_ARGUMENT_COUNT = "Wrong argument count supplied.";
 	private static final String ERROR_EXTENSION = "Invalid file extension.";
-	private static final String ERROR_FILE_READY = "There has been a filesystem error.";
-	
+	private static final String ERROR_FILE_NAME_LENGTH = "File name should be at least 1 character long.";
+	private static final String ERROR_FILE_RW = "There has been a filesystem error.";
+
 	private static final String ERROR_COMMAND = "Command is invalid.";
 	private static final String ERROR_ADD = "Adding has failed.";
 	private static final String ERROR_DELETE = "Deleting has failed.";
 	private static final String ERROR_CLEAR = "Clearing has failed.";
 
+	// Error Codes
+
+	private static final int INVALID_INTEGER = -1;
+	
 	// Printed Strings
 
 	private static final String FORMAT_WELCOME = "Welcome to TextBuddy. %1$s is ready for use\n";
@@ -37,8 +42,8 @@ public class TextBuddyTUI {
 
 	// Other Constants
 
-	private static final String VALID_FILENAME = ".txt";
-	
+	private static final String VALID_EXTENSION = ".txt";
+
 	// Objects Declaration
 
 	TextBuddyLogic logic;
@@ -49,78 +54,37 @@ public class TextBuddyTUI {
 	public TextBuddyTUI(String[] args) {
 		systemAssertArguments(args);
 		systemInitialize(args);
+		systemAssertReady();
 	}
 
-	// Initialization / Clean Up Methods
+	// High Level System Implementation
+
 
 	private void systemAssertArguments(String[] args) {
 		exitIfInvalidArgumentCount(args);
-		exitIfInvalidFileName(args[0]);
+		exitIfInvalidFileName(args);
 	}
-	
+
 	private void systemInitialize(String[] args) {
 		initializeLogic(args);
 		initializeTUI();
 	}
-
-	private void exitIfInvalidFileName(String fileName) {
-		exitIfIncorrectExtension(fileName);
+	
+	private void systemAssertReady() {
+		exitIfFilesystemError();
 	}
-
-	private void exitIfIncorrectExtension(String fileName) {
-		boolean endsWithCorrectExtension = fileName.endsWith(VALID_FILENAME);
-		if (!endsWithCorrectExtension) {
-			printErrorAndExit(ERROR_EXTENSION);
-		}
-	}
-
-	private void exitIfInvalidArgumentCount(String[] args) {
-		boolean onlyOneArgument = (args.length == 1);
-		if (!onlyOneArgument) {
-			printErrorAndExit(ERROR_ARGUMENT_COUNT);
-		}
-	}
-
-	private void initializeLogic(String[] args) {
-		logic = new TextBuddyLogic(args[0]);
-	}
-
-	private void initializeTUI() {
-		scanner = new Scanner(System.in);
-	}
-
-	private void systemSave() {
-		logic.save();
-	}
-
-	private void systemCleanUp() {
-		scanner.close();
-	}
-
-	// UI Methods
 
 	public void systemRun() {
-		if (isFileReady()) {
-			printReadyMessage();
-			interactiveUntilUserExits();
-		} else {
-			printFileReadyError();
-		}
-	}
-
-	private boolean isFileReady() {
-		return logic.isFileReadableWritable();
-	}
-
-	private void printFileReadyError() {
-		System.out.println(ERROR_FILE_READY);
+		printWelcomeMessage();
+		interactiveUntilUserExits();
+		printFileReadyError();
 	}
 
 	private void interactiveUntilUserExits() {
 		while (true) {
 			String feedback = processUserCommand();
 			systemSave();
-			System.out.println(feedback);
+			systemPrint(feedback);
 		}
 	}
 
@@ -143,7 +107,13 @@ public class TextBuddyTUI {
 		}
 	}
 
-	// Operation Methods
+	// Basic Operations
+
+	private String getUserCommand() {
+		System.out.print(COMMAND_PROMPT);
+		String userCommand = scanner.next();
+		return userCommand;
+	}
 
 	private String add() {
 		String addedLine = getValidLine();
@@ -169,7 +139,8 @@ public class TextBuddyTUI {
 		String deletedLine = logic.delete(lineNumber);
 		boolean deleteSuccess = deletedLine != null;
 		if (deleteSuccess) {
-			return String.format(FORMAT_DELETE, deletedLine);
+			return String.format(FORMAT_DELETE, logic.getFileName(),
+					deletedLine);
 		} else {
 			return ERROR_DELETE;
 		}
@@ -189,15 +160,72 @@ public class TextBuddyTUI {
 		systemExit();
 	}
 
+	// Initialization and Clean Up
+
+	private void exitIfInvalidArgumentCount(String[] args) {
+		boolean onlyOneArgument = (args.length == 1);
+		if (!onlyOneArgument) {
+			printErrorAndExit(ERROR_ARGUMENT_COUNT);
+		}
+	}
+
+	private void exitIfInvalidFileName(String[] args) {
+		String fileName = args[0];
+		exitIfIncorrectExtension(fileName);
+		exitIfIncorrectLength(fileName);
+	}
+
+	private void exitIfIncorrectExtension(String fileName) {
+		boolean endsWithCorrectExtension = fileName.endsWith(VALID_EXTENSION);
+		if (!endsWithCorrectExtension) {
+			printErrorAndExit(ERROR_EXTENSION);
+		}
+	}
+
+	private void exitIfIncorrectLength(String fileName) {
+		String fileNameWithoutExtension = fileName.replaceAll(VALID_EXTENSION,"");
+		boolean isLengthZero = (fileNameWithoutExtension.trim().length()==0);
+		if (isLengthZero) {
+			printErrorAndExit(ERROR_FILE_NAME_LENGTH);
+		}
+	}
+
+	private void exitIfFilesystemError() {
+		exitIfFileNotReadableWritable();
+	}
+	
+	private void exitIfFileNotReadableWritable() {
+		boolean isFileReadableWritable = logic.isFileReadableWritable();
+		if (!isFileReadableWritable) {
+			printErrorAndExit(ERROR_FILE_RW);
+		}
+	}
+
+	private void initializeLogic(String[] args) {
+		logic = new TextBuddyLogic(args[0]);
+	}
+
+	private void initializeTUI() {
+		scanner = new Scanner(System.in);
+	}
+
+	private void systemSave() {
+		logic.save();
+	}
+
+	private void systemCleanUp() {
+		scanner.close();
+	}
+
 	private void systemExit() {
 		System.exit(0);
 	}
 
+	// Input Methods
+
 	private void discardLine() {
 		scanner.nextLine();
 	}
-
-	// Input Methods
 
 	private String getValidLine() {
 		return scanner.nextLine().trim();
@@ -213,32 +241,35 @@ public class TextBuddyTUI {
 			}
 		} catch (InputMismatchException e) {
 			discardLine();
-			return -1;
+			return INVALID_INTEGER;
 		}
 	}
 
-	// Printing Methods
+	// Output Methods
 
 	private void printErrorAndExit(String errorMessage) {
-		System.out.println(errorMessage);
+		systemPrint(errorMessage);
 		System.exit(1);
 	}
 
-	private void printReadyMessage() {
+	private void printWelcomeMessage() {
 		System.out.printf(FORMAT_WELCOME, logic.getFileName());
 	}
 
-	private String getUserCommand() {
-		System.out.print(COMMAND_PROMPT);
-		String userCommand = scanner.next();
-		return userCommand;
+	private void printFileReadyError() {
+		System.out.println(ERROR_FILE_RW);
+	}
+
+	private void systemPrint(String feedback) {
+		System.out.println(feedback);
 	}
 
 	private String listToString(List<String> list) {
 		String consolidateString = "";
 		int lineNumber = 1;
 		for (String content : list) {
-			consolidateString += String.format(FORMAT_DISPLAY, lineNumber, content);
+			consolidateString += String.format(FORMAT_DISPLAY, lineNumber,
+					content);
 			lineNumber++;
 		}
 		String trimmedString = consolidateString.trim();
