@@ -26,7 +26,7 @@ public class TUISortByNameTC2 {
 		tui.processUserCommand("add b");
 		tui.processUserCommand("add a");
 		tui.processUserCommand("sort");
-		assertEquals("1. a\n2. b\n3. c\n",tui.processUserCommand("display"));
+		assertEquals("1. a\n2. b\n3. c",tui.processUserCommand("display"));
 		tui.processUserCommand("clear");
 	}
 
