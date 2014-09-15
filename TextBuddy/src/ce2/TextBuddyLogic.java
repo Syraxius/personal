@@ -149,7 +149,8 @@ public class TextBuddyLogic {
 	public List<String> searchByKeyword(String keyword) {
 		List<String> searchList = new ArrayList<String>();
 		for (String line:list) {
-			if (line.contains(keyword)) {
+			boolean containsKeyword = line.contains(keyword);
+			if (containsKeyword) {
 				searchList.add(line);
 			}
 		}
