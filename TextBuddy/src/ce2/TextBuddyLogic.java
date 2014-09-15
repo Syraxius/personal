@@ -141,6 +141,7 @@ public class TextBuddyLogic {
 	}
 	
 	public boolean sort() {
+		list.sort(String.CASE_INSENSITIVE_ORDER);
 		return true;
 	}
 	
