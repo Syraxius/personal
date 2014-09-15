@@ -19,19 +19,19 @@ public class TUISearchByKeywordTC2 {
 	public void setUp() throws Exception {
 		String[] args = {"test.txt"};
 		tui = new TextBuddyTUI(args);
+		tui.processUserCommand("add carrot");
+		tui.processUserCommand("add applepie");
+		tui.processUserCommand("add apple");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		tui.processUserCommand("clear");
 	}
 
 	@Test
 	public void test() {
-		tui.processUserCommand("add carrot");
-		tui.processUserCommand("add applepie");
-		tui.processUserCommand("add apple");
 		assertEquals("- applepie\n- apple",tui.processUserCommand("search apple"));
-		tui.processUserCommand("clear");
 	}
 
 }

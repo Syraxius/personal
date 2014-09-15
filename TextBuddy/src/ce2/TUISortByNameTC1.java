@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This tests whether sortByName() shows the correct messages.
+ * This tests whether sortByName() shows the correct message.
  *
  * @author Ang Kah Min, Kelvin
  */
@@ -19,19 +19,19 @@ public class TUISortByNameTC1 {
 	public void setUp() throws Exception {
 		String[] args = {"test.txt"};
 		tui = new TextBuddyTUI(args);
+		tui.processUserCommand("add c");
+		tui.processUserCommand("add b");
+		tui.processUserCommand("add a");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		tui.processUserCommand("clear");
 	}
 
 	@Test
 	public void test() {
-		assertEquals("added to test.txt: \"c\"", tui.processUserCommand("add c"));
-		assertEquals("added to test.txt: \"b\"", tui.processUserCommand("add b"));
-		assertEquals("added to test.txt: \"a\"", tui.processUserCommand("add a"));
 		assertEquals("test.txt has been sorted", tui.processUserCommand("sort"));
-		assertEquals("all content deleted from test.txt", tui.processUserCommand("clear"));
 	}
 
 }

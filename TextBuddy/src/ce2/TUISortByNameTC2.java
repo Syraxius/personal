@@ -19,20 +19,20 @@ public class TUISortByNameTC2 {
 	public void setUp() throws Exception {
 		String[] args = {"test.txt"};
 		tui = new TextBuddyTUI(args);
+		tui.processUserCommand("add c");
+		tui.processUserCommand("add b");
+		tui.processUserCommand("add a");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		tui.processUserCommand("clear");
 	}
 
 	@Test
 	public void test() {
-		tui.processUserCommand("add c");
-		tui.processUserCommand("add b");
-		tui.processUserCommand("add a");
 		tui.processUserCommand("sort");
 		assertEquals("1. a\n2. b\n3. c",tui.processUserCommand("display"));
-		tui.processUserCommand("clear");
 	}
 
 }

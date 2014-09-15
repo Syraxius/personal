@@ -34,12 +34,9 @@ public class LogicSortByNameTC2 {
 	public void test() {
 		logic.sortByName();
 		List<String> list = logic.getList();
-		String line1 = list.get(0);
-		String line2 = list.get(1);
-		String line3 = list.get(2);
-		assertEquals("a", line1);
-		assertEquals("b", line2);
-		assertEquals("c", line3);
+		assertEquals("a", list.get(0));
+		assertEquals("b", list.get(1));
+		assertEquals("c", list.get(2));
 	}
 
 }

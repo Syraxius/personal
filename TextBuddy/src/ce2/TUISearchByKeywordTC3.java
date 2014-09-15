@@ -23,12 +23,12 @@ public class TUISearchByKeywordTC3 {
 
 	@After
 	public void tearDown() throws Exception {
+		tui.processUserCommand("clear");
 	}
 
 	@Test
 	public void test() {
 		assertEquals("\"apple\" not found in test.txt",tui.processUserCommand("search apple"));
-		tui.processUserCommand("clear");
 	}
 
 }
