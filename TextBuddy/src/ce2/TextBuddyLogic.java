@@ -148,8 +148,11 @@ public class TextBuddyLogic {
 	
 	public List<String> searchByKeyword(String keyword) {
 		List<String> searchList = new ArrayList<String>();
-		searchList.add("applebanana");
-		searchList.add("bananapie");
+		for (String line:list) {
+			if (line.contains(keyword)) {
+				searchList.add(line);
+			}
+		}
 		return searchList;
 	}
 }
