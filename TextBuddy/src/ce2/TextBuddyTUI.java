@@ -65,6 +65,7 @@ public class TextBuddyTUI {
 	private static final String FORMAT_DELETE = "deleted from %1$s: \"%2$s\"";
 	private static final String FORMAT_DISPLAY = "%1$d. %2$s\n";
 	private static final String FORMAT_EMPTY = "%1$s is empty";
+	private static final String FORMAT_NOT_FOUND = "\"%1$s\" is not found in %2$s";
 	private static final String FORMAT_SORT = "%1$s has been sorted";
 	private static final String FORMAT_SEARCH = "- %1$s\n";
 	private static final String FORMAT_PROMPT = "command: ";
