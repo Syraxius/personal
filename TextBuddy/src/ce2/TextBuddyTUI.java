@@ -212,8 +212,9 @@ public class TextBuddyTUI {
 		return String.format(FORMAT_SORT, logic.getFileName());
 	}
 	
-	private String searchByKeyword(String keyword) {
-		return null;
+	private String searchByKeyword(String userCommand) {
+		String keyword = removeFirstWord(userCommand);
+		return "- "+keyword;
 	}
 
 	private void exit() {
