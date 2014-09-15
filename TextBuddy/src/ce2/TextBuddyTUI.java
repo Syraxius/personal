@@ -116,13 +116,13 @@ public class TextBuddyTUI {
 		CommandType commandType = getCommandType(firstWord);
 		switch (commandType) {
 		case ADD :
-			return add(userCommand);
+			return addLine(userCommand);
 		case CLEAR :
-			return clear();
+			return clearAllLines();
 		case DELETE :
-			return delete(userCommand);
+			return deleteLine(userCommand);
 		case DISPLAY :
-			return display();
+			return displayAllLines();
 		case EXIT :
 			exit();
 		case INVALID :
@@ -149,7 +149,7 @@ public class TextBuddyTUI {
 		}
 	}
 
-	private String add(String userCommand) {
+	private String addLine(String userCommand) {
 		String lineToAdd = removeFirstWord(userCommand);
 
 		boolean isAddSuccess = logic.add(lineToAdd);
@@ -160,7 +160,7 @@ public class TextBuddyTUI {
 		}
 	}
 
-	private String delete(String userCommand) {
+	private String deleteLine(String userCommand) {
 		String lineNumberString = removeFirstWord(userCommand);
 		int lineNumber = parseInt(lineNumberString);
 		int actualLineNumber = lineNumber - 1;
@@ -175,7 +175,7 @@ public class TextBuddyTUI {
 		}
 	}
 
-	private String display() {
+	private String displayAllLines() {
 		List<String> list = logic.getList();
 
 		boolean isListEmpty = list.isEmpty();
@@ -186,7 +186,7 @@ public class TextBuddyTUI {
 		}
 	}
 
-	private String clear() {
+	private String clearAllLines() {
 		boolean isClearSuccess = logic.clear();
 		if (isClearSuccess) {
 			return String.format(FORMAT_CLEAR, logic.getFileName());
