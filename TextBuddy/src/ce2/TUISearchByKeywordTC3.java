@@ -6,6 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * This tests whether searchByKeyword() is able to inform of invalid search term.
+ *
+ * @author Ang Kah Min, Kelvin
+ */
 public class TUISearchByKeywordTC3 {
 	
 	TextBuddyTUI tui;

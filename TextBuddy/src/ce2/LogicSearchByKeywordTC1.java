@@ -9,20 +9,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This tests whether sortByName() actually sorts the items.
+ * This tests whether searchByKeyword() finds the correct items.
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicSortByNameTC2 {
-
+public class LogicSearchByKeywordTC1 {
+	
 	TextBuddyLogic logic;
 
 	@Before
 	public void setUp() throws Exception {
 		logic = new TextBuddyLogic("test.txt");
-		logic.addLine("c");
-		logic.addLine("b");
-		logic.addLine("a");
+		logic.addLine("applepie");
+		logic.addLine("applebanana");
+		logic.addLine("bananapie");
 	}
 
 	@After
@@ -32,14 +32,9 @@ public class LogicSortByNameTC2 {
 
 	@Test
 	public void test() {
-		logic.sortByName();
-		List<String> list = logic.getList();
-		String line1 = list.get(0);
-		String line2 = list.get(1);
-		String line3 = list.get(2);
-		assertEquals("a", line1);
-		assertEquals("b", line2);
-		assertEquals("c", line3);
+		List<String> list = logic.searchByKeyword("banana");
+		assertEquals("applebanana",list.get(0));
+		assertEquals("bananapie",list.get(1));
 	}
 
 }

@@ -8,7 +8,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LogicSearchByNameTC1 {
+/**
+ * This tests whether searchByKeyword() finds the correct items after adding more.
+ *
+ * @author Ang Kah Min, Kelvin
+ */
+public class LogicSearchByKeywordTC2 {
 	
 	TextBuddyLogic logic;
 
@@ -18,6 +23,7 @@ public class LogicSearchByNameTC1 {
 		logic.addLine("applepie");
 		logic.addLine("applebanana");
 		logic.addLine("bananapie");
+		logic.addLine("bananana");
 	}
 
 	@After
@@ -30,6 +36,7 @@ public class LogicSearchByNameTC1 {
 		List<String> list = logic.searchByKeyword("banana");
 		assertEquals("applebanana",list.get(0));
 		assertEquals("bananapie",list.get(1));
+		assertEquals("bananana",list.get(2));
 	}
 
 }

@@ -24,7 +24,7 @@ public class TextBuddyTUI {
 	// Command Type Enumeration
 
 	private static enum CommandType {
-		ADD, DELETE, DISPLAY, CLEAR, SORT, SEARCH, EXIT, INVALID
+		ADD, DELETE, DISPLAY, CLEAR, SEARCH, SORT, EXIT, INVALID
 	};
 
 	// Dictionaries
@@ -33,12 +33,13 @@ public class TextBuddyTUI {
 	private static final String[] DICTIONARY_CLEAR = { "clear", "-c", "/c" };
 	private static final String[] DICTIONARY_DELETE = { "delete", "-de", "/de" };
 	private static final String[] DICTIONARY_DISPLAY = { "display", "-di",
-			"/di" };
-	private static final String[] DICTIONARY_SORT = { "sort", "-s", "/s" };
+														 "/di" };
 	private static final String[] DICTIONARY_SEARCH = { "search", "-se", "/se" };
+	private static final String[] DICTIONARY_SORT = { "sort", "-s", "/s" };
 	private static final String[] DICTIONARY_EXIT = { "exit", "-e", "/e" };
 	private static final String[] DICTIONARY_NTFS_INVALID = { "<", ">", ":",
-			"\"", "/", "\\", "|", "?", "*" };
+															  "\"", "/", "\\",
+															  "|", "?", "*" };
 
 	// Error Strings
 
@@ -66,9 +67,9 @@ public class TextBuddyTUI {
 	private static final String FORMAT_DISPLAY = "%1$d. %2$s\n";
 	private static final String FORMAT_EMPTY = "%1$s is empty";
 	private static final String FORMAT_NOT_FOUND = "\"%1$s\" not found in %2$s";
-	private static final String FORMAT_SORT = "%1$s has been sorted";
-	private static final String FORMAT_SEARCH = "- %1$s\n";
 	private static final String FORMAT_PROMPT = "command: ";
+	private static final String FORMAT_SEARCH = "- %1$s\n";
+	private static final String FORMAT_SORT = "%1$s has been sorted";
 	private static final String FORMAT_WELCOME = "Welcome to TextBuddy. %1$s is ready for use\n";
 
 	// Other Constants
@@ -124,20 +125,20 @@ public class TextBuddyTUI {
 		switch (commandType) {
 		case ADD:
 			return addLine(userCommand);
-		case CLEAR:
-			return clearAllLines();
 		case DELETE:
 			return deleteLine(userCommand);
+		case SEARCH:
+			return searchByKeyword(userCommand);
+		case CLEAR:
+			return clearAllLines();
 		case DISPLAY:
 			return displayAllLines();
 		case SORT:
 			return sortByName();
-		case SEARCH:
-			return searchByKeyword(userCommand);
-		case EXIT:
-			exit();
 		case INVALID:
 			return ERROR_INVALID_COMMAND;
+		case EXIT:
+			exit();
 		default:
 			throw new Error(ERROR_FATAL);
 		}
@@ -155,10 +156,10 @@ public class TextBuddyTUI {
 			return CommandType.DISPLAY;
 		} else if (isDictionaryContains(DICTIONARY_SORT, commandLowerCase)) {
 			return CommandType.SORT;
-		} else if (isDictionaryContains(DICTIONARY_SEARCH, commandLowerCase)) {
-			return CommandType.SEARCH;
 		} else if (isDictionaryContains(DICTIONARY_EXIT, commandLowerCase)) {
 			return CommandType.EXIT;
+		} else if (isDictionaryContains(DICTIONARY_SEARCH, commandLowerCase)) {
+			return CommandType.SEARCH;
 		} else {
 			return CommandType.INVALID;
 		}
@@ -184,7 +185,7 @@ public class TextBuddyTUI {
 		boolean isDeleteSuccess = deletedLine != null;
 		if (isDeleteSuccess) {
 			return String.format(FORMAT_DELETE, logic.getFileName(),
-					deletedLine);
+								 deletedLine);
 		} else {
 			return ERROR_DELETE;
 		}
@@ -218,7 +219,7 @@ public class TextBuddyTUI {
 	private String searchByKeyword(String userCommand) {
 		String keyword = removeFirstWord(userCommand);
 		List<String> searchList = logic.searchByKeyword(keyword);
-		
+
 		boolean isListEmpty = searchList.isEmpty();
 		if (isListEmpty) {
 			return String.format(FORMAT_NOT_FOUND, keyword, logic.getFileName());

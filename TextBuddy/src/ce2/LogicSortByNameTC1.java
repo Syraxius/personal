@@ -6,8 +6,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
+/**
+ * This tests whether sortByName() returns true.
+ *
+ * @author Ang Kah Min, Kelvin
+ */
 public class LogicSortByNameTC1 {
-	
+
 	TextBuddyLogic logic;
 
 	@Before

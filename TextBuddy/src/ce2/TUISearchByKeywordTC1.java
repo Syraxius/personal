@@ -6,6 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * This tests whether searchByKeyword() is able to search for single items.
+ *
+ * @author Ang Kah Min, Kelvin
+ */
 public class TUISearchByKeywordTC1 {
 	
 	TextBuddyTUI tui;

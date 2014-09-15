@@ -6,6 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * This tests whether sortByName() shows the correct messages.
+ *
+ * @author Ang Kah Min, Kelvin
+ */
 public class TUISortByNameTC1 {
 	
 	TextBuddyTUI tui;
