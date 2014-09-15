@@ -133,7 +133,7 @@ public class TextBuddyLogic {
 		boolean success;
 		try {
 			Files.write(path, list, StandardOpenOption.CREATE,
-					StandardOpenOption.TRUNCATE_EXISTING);
+						StandardOpenOption.TRUNCATE_EXISTING);
 			success = true;
 		} catch (Exception e) {
 			success = false;

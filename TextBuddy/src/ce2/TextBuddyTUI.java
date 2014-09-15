@@ -54,6 +54,7 @@ public class TextBuddyTUI {
 	private static final String ERROR_DELETE = "Delete command failed.";
 	private static final String ERROR_FATAL = "A fatal error has been encountered.";
 	private static final String ERROR_INVALID_COMMAND = "Command is invalid.";
+	private static final String ERROR_SORT = "Sort command failed.";
 
 	// Error Codes
 
@@ -211,11 +212,6 @@ public class TextBuddyTUI {
 		}
 	}
 
-	private String sortByName() {
-		logic.sortByName();
-		return String.format(FORMAT_SORT, logic.getFileName());
-	}
-
 	private String searchByKeyword(String userCommand) {
 		String keyword = removeFirstWord(userCommand);
 		List<String> searchList = logic.searchByKeyword(keyword);
@@ -225,6 +221,15 @@ public class TextBuddyTUI {
 			return String.format(FORMAT_NOT_FOUND, keyword, logic.getFileName());
 		} else {
 			return listToHyphenatedString(searchList);
+		}
+	}
+
+	private String sortByName() {
+		boolean sortSuccess = logic.sortByName();
+		if (sortSuccess) {
+			return String.format(FORMAT_SORT, logic.getFileName());
+		} else {
+			return ERROR_SORT;
 		}
 	}
 
