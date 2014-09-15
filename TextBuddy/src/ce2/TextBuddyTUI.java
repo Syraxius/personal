@@ -105,7 +105,7 @@ public class TextBuddyTUI {
 			String userCommand = getUserCommand();
 			String feedback = processUserCommand(userCommand);
 			systemSave();
-			systemPrint(feedback);
+			showToUser(feedback);
 		}
 	}
 
@@ -246,7 +246,7 @@ public class TextBuddyTUI {
 	// Output Methods
 
 	private void printErrorAndExit(String errorMessage) {
-		systemPrint(errorMessage);
+		showToUser(errorMessage);
 		System.exit(1);
 	}
 
@@ -254,7 +254,7 @@ public class TextBuddyTUI {
 		System.out.printf(FORMAT_WELCOME, logic.getFileName());
 	}
 
-	private void systemPrint(String feedback) {
+	private void showToUser(String feedback) {
 		System.out.println(feedback);
 	}
 
