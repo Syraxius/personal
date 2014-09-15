@@ -125,6 +125,10 @@ public class TextBuddyTUI {
 			return deleteLine(userCommand);
 		case DISPLAY :
 			return displayAllLines();
+		case SORT :
+			return sortByName();
+		case SEARCH :
+			return searchByKeyword(userCommand);
 		case EXIT :
 			exit();
 		case INVALID :
@@ -201,7 +205,8 @@ public class TextBuddyTUI {
 		}
 	}
 	
-	private void sortByName() {
+	private String sortByName() {
+		return null;
 	}
 	
 	private String searchByKeyword(String keyword) {
