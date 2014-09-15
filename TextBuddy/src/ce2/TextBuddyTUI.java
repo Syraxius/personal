@@ -22,7 +22,7 @@ public class TextBuddyTUI {
 	// Command Type Enumeration
 
 	private static enum CommandType {
-		ADD, DELETE, DISPLAY, CLEAR, EXIT, INVALID
+		ADD, DELETE, DISPLAY, CLEAR, SORT, SEARCH, EXIT, INVALID
 	};
 
 	// Dictionaries
@@ -31,6 +31,8 @@ public class TextBuddyTUI {
 	private static final String[] DICTIONARY_CLEAR = { "clear", "-c", "/c" };
 	private static final String[] DICTIONARY_DELETE = { "delete", "-de", "/de" };
 	private static final String[] DICTIONARY_DISPLAY = { "display", "-di", "/di" };
+	private static final String[] DICTIONARY_SORT = { "sort", "-s", "/s" };
+	private static final String[] DICTIONARY_SEARCH = { "search", "-se", "/se" };
 	private static final String[] DICTIONARY_EXIT = { "exit", "-e", "/e" };
 	private static final String[] DICTIONARY_NTFS_INVALID = { "<", ">", ":",
 															  "\"", "/", "\\",
@@ -142,6 +144,10 @@ public class TextBuddyTUI {
 			return CommandType.DELETE;
 		} else if (isDictionaryContains(DICTIONARY_DISPLAY, commandLowerCase)) {
 			return CommandType.DISPLAY;
+		} else if (isDictionaryContains(DICTIONARY_SORT, commandLowerCase)) {
+			return CommandType.SORT;
+		} else if (isDictionaryContains(DICTIONARY_SEARCH, commandLowerCase)) {
+			return CommandType.SEARCH;
 		} else if (isDictionaryContains(DICTIONARY_EXIT, commandLowerCase)) {
 			return CommandType.EXIT;
 		} else {
@@ -193,6 +199,13 @@ public class TextBuddyTUI {
 		} else {
 			return ERROR_CLEAR;
 		}
+	}
+	
+	private void sortByName() {
+	}
+	
+	private String searchByKeyword(String keyword) {
+		return null;
 	}
 
 	private void exit() {
