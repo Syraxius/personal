@@ -115,7 +115,7 @@ public class TextBuddyTUI {
 
 	// Basic Operations
 
-	private String processUserCommand(String userCommand) {
+	public String processUserCommand(String userCommand) {
 		String firstWord = getFirstWord(userCommand);
 		CommandType commandType = getCommandType(firstWord);
 		switch (commandType) {
@@ -208,8 +208,7 @@ public class TextBuddyTUI {
 	}
 	
 	private String sortByName() {
-		logic.sortByName();
-		return String.format(FORMAT_SORT, logic.getFileName());
+		return null;
 	}
 	
 	private String searchByKeyword(String keyword) {
