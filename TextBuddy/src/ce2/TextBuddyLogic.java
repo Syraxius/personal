@@ -140,7 +140,7 @@ public class TextBuddyLogic {
 		return success;
 	}
 	
-	public boolean sort() {
+	public boolean sortByName() {
 		list.sort(String.CASE_INSENSITIVE_ORDER);
 		return true;
 	}

@@ -8,16 +8,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SortByNameTC2 {
-
+public class LogicSearchByNameTC1 {
+	
 	TextBuddyLogic logic;
 
 	@Before
 	public void setUp() throws Exception {
 		logic = new TextBuddyLogic("test.txt");
-		logic.addLine("c");
-		logic.addLine("b");
-		logic.addLine("a");
+		logic.addLine("applepie");
+		logic.addLine("applebanana");
+		logic.addLine("bananapie");
 	}
 
 	@After
@@ -27,14 +27,9 @@ public class SortByNameTC2 {
 
 	@Test
 	public void test() {
-		logic.sort();
-		List<String> list = logic.getList();
-		String line1 = list.get(0);
-		String line2 = list.get(1);
-		String line3 = list.get(2);
-		assertEquals("a", line1);
-		assertEquals("b", line2);
-		assertEquals("c", line3);
+		List<String> list = logic.searchByKeyword("banana");
+		assertEquals("applebanana",list.get(0));
+		assertEquals("bananapie",list.get(1));
 	}
 
 }

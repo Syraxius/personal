@@ -25,7 +25,7 @@ public class LogicSortByNameTC1 {
 
 	@Test
 	public void test() {
-		boolean sortSuccess = logic.sort();
+		boolean sortSuccess = logic.sortByName();
 		assertTrue(sortSuccess);
 	}
 

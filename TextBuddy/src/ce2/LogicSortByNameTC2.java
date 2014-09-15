@@ -27,7 +27,7 @@ public class LogicSortByNameTC2 {
 
 	@Test
 	public void test() {
-		logic.sort();
+		logic.sortByName();
 		List<String> list = logic.getList();
 		String line1 = list.get(0);
 		String line2 = list.get(1);
