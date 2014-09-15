@@ -91,7 +91,7 @@ public class TextBuddyLogic {
 
 	// Operation Methods
 
-	public boolean add(String content) {
+	public boolean addLine(String content) {
 		boolean success;
 		try {
 			boolean isNull = content == null;
@@ -107,7 +107,7 @@ public class TextBuddyLogic {
 		return success;
 	}
 
-	public String delete(int lineNumber) {
+	public String deleteLine(int lineNumber) {
 		String deletedLine;
 		try {
 			deletedLine = list.remove(lineNumber);
@@ -117,7 +117,7 @@ public class TextBuddyLogic {
 		return deletedLine;
 	}
 
-	public boolean clear() {
+	public boolean clearAllLines() {
 		boolean success;
 		try {
 			list.clear();
@@ -128,7 +128,7 @@ public class TextBuddyLogic {
 		return success;
 	}
 
-	public boolean save() {
+	public boolean saveToFile() {
 		boolean success;
 		try {
 			Files.write(path, list, StandardOpenOption.CREATE,
@@ -138,5 +138,13 @@ public class TextBuddyLogic {
 			success = false;
 		}
 		return success;
+	}
+	
+	public boolean sort() {
+		return false;
+	}
+	
+	public List<String> searchByKeyword(String keyword) {
+		return null;
 	}
 }

@@ -162,7 +162,7 @@ public class TextBuddyTUI {
 	private String addLine(String userCommand) {
 		String lineToAdd = removeFirstWord(userCommand);
 
-		boolean isAddSuccess = logic.add(lineToAdd);
+		boolean isAddSuccess = logic.addLine(lineToAdd);
 		if (isAddSuccess) {
 			return String.format(FORMAT_ADD, logic.getFileName(), lineToAdd);
 		} else {
@@ -174,7 +174,7 @@ public class TextBuddyTUI {
 		String lineNumberString = removeFirstWord(userCommand);
 		int lineNumber = parseInt(lineNumberString);
 		int actualLineNumber = lineNumber - 1;
-		String deletedLine = logic.delete(actualLineNumber);
+		String deletedLine = logic.deleteLine(actualLineNumber);
 
 		boolean isDeleteSuccess = deletedLine != null;
 		if (isDeleteSuccess) {
@@ -197,7 +197,7 @@ public class TextBuddyTUI {
 	}
 
 	private String clearAllLines() {
-		boolean isClearSuccess = logic.clear();
+		boolean isClearSuccess = logic.clearAllLines();
 		if (isClearSuccess) {
 			return String.format(FORMAT_CLEAR, logic.getFileName());
 		} else {
@@ -299,7 +299,7 @@ public class TextBuddyTUI {
 	}
 
 	private void systemSave() {
-		logic.save();
+		logic.saveToFile();
 	}
 
 	private void systemCleanUp() {
