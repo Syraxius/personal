@@ -10,10 +10,12 @@ import java.util.Scanner;
  * 
  * The program makes use of TextBuddyLogic to handle low level tasks.
  * 
- * It has been updated to support alternate shorthand commands using String dictionaries.
- * (Just an array of String for the time being, not the Dictionary data structure).
+ * It has been updated to support alternate shorthand commands using String
+ * dictionaries. (Just an array of String for the time being, not the Dictionary
+ * data structure).
  *
- * Methods are sorted according to abstraction level from the highest to the lowest level.
+ * Methods are sorted according to abstraction level from the highest to the
+ * lowest level.
  *
  * @author Ang Kah Min, Kelvin
  */
@@ -30,13 +32,13 @@ public class TextBuddyTUI {
 	private static final String[] DICTIONARY_ADD = { "add", "-a", "/a" };
 	private static final String[] DICTIONARY_CLEAR = { "clear", "-c", "/c" };
 	private static final String[] DICTIONARY_DELETE = { "delete", "-de", "/de" };
-	private static final String[] DICTIONARY_DISPLAY = { "display", "-di", "/di" };
+	private static final String[] DICTIONARY_DISPLAY = { "display", "-di",
+			"/di" };
 	private static final String[] DICTIONARY_SORT = { "sort", "-s", "/s" };
 	private static final String[] DICTIONARY_SEARCH = { "search", "-se", "/se" };
 	private static final String[] DICTIONARY_EXIT = { "exit", "-e", "/e" };
 	private static final String[] DICTIONARY_NTFS_INVALID = { "<", ">", ":",
-															  "\"", "/", "\\",
-															  "|", "?", "*" };
+			"\"", "/", "\\", "|", "?", "*" };
 
 	// Error Strings
 
@@ -64,7 +66,7 @@ public class TextBuddyTUI {
 	private static final String FORMAT_DISPLAY = "%1$d. %2$s\n";
 	private static final String FORMAT_EMPTY = "%1$s is empty";
 	private static final String FORMAT_SORT = "%1$s has been sorted";
-	private static final String FORMAT_SEARCH = "%2$s\n";
+	private static final String FORMAT_SEARCH = "- %1$s\n";
 	private static final String FORMAT_PROMPT = "command: ";
 	private static final String FORMAT_WELCOME = "Welcome to TextBuddy. %1$s is ready for use\n";
 
@@ -119,23 +121,23 @@ public class TextBuddyTUI {
 		String firstWord = getFirstWord(userCommand);
 		CommandType commandType = getCommandType(firstWord);
 		switch (commandType) {
-		case ADD :
+		case ADD:
 			return addLine(userCommand);
-		case CLEAR :
+		case CLEAR:
 			return clearAllLines();
-		case DELETE :
+		case DELETE:
 			return deleteLine(userCommand);
-		case DISPLAY :
+		case DISPLAY:
 			return displayAllLines();
-		case SORT :
+		case SORT:
 			return sortByName();
-		case SEARCH :
+		case SEARCH:
 			return searchByKeyword(userCommand);
-		case EXIT :
+		case EXIT:
 			exit();
-		case INVALID :
+		case INVALID:
 			return ERROR_INVALID_COMMAND;
-		default :
+		default:
 			throw new Error(ERROR_FATAL);
 		}
 	}
@@ -206,15 +208,17 @@ public class TextBuddyTUI {
 			return ERROR_CLEAR;
 		}
 	}
-	
+
 	private String sortByName() {
 		logic.sortByName();
 		return String.format(FORMAT_SORT, logic.getFileName());
 	}
-	
+
 	private String searchByKeyword(String userCommand) {
 		String keyword = removeFirstWord(userCommand);
-		return "- "+keyword;
+		List<String> searchList = logic.searchByKeyword(keyword);
+		String foundString = listToHyphenatedString(searchList);
+		return foundString;
 	}
 
 	private void exit() {
@@ -285,8 +289,17 @@ public class TextBuddyTUI {
 		int lineNumber = 1;
 		for (String content : list) {
 			consolidateString += String.format(FORMAT_DISPLAY, lineNumber,
-											   content);
+					content);
 			lineNumber++;
+		}
+		String trimmedString = consolidateString.trim();
+		return trimmedString;
+	}
+
+	private String listToHyphenatedString(List<String> list) {
+		String consolidateString = "";
+		for (String content : list) {
+			consolidateString += String.format(FORMAT_SEARCH, content);
 		}
 		String trimmedString = consolidateString.trim();
 		return trimmedString;
@@ -313,7 +326,7 @@ public class TextBuddyTUI {
 	private void systemExit() {
 		System.exit(0);
 	}
-	
+
 	// System Assertions
 
 	private void exitIfInvalidFileName(String[] args) {
@@ -350,7 +363,7 @@ public class TextBuddyTUI {
 
 	private void exitIfIncorrectLength(String fileName) {
 		String fileNameWithoutExtension = fileName.replaceAll(VALID_EXTENSION,
-															  "");
+				"");
 		boolean isLengthZero = (fileNameWithoutExtension.trim().length() == 0);
 		if (isLengthZero) {
 			printErrorAndExit(ERROR_FILE_NAME_LENGTH);
