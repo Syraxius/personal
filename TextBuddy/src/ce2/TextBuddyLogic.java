@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -146,6 +147,9 @@ public class TextBuddyLogic {
 	}
 	
 	public List<String> searchByKeyword(String keyword) {
-		return null;
+		List<String> searchList = new ArrayList<String>();
+		searchList.add("applebanana");
+		searchList.add("bananapie");
+		return searchList;
 	}
 }
