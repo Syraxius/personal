@@ -64,7 +64,7 @@ public class TextBuddyTUI {
 	private static final String FORMAT_DISPLAY = "%1$d. %2$s\n";
 	private static final String FORMAT_EMPTY = "%1$s is empty";
 	private static final String FORMAT_SORT = "%1$s has been sorted";
-	private static final String FORMAT_SEARCH = "%1$s is empty";
+	private static final String FORMAT_SEARCH = "%2$s\n";
 	private static final String FORMAT_PROMPT = "command: ";
 	private static final String FORMAT_WELCOME = "Welcome to TextBuddy. %1$s is ready for use\n";
 
@@ -208,6 +208,7 @@ public class TextBuddyTUI {
 	}
 	
 	private String sortByName() {
+		logic.sortByName();
 		return String.format(FORMAT_SORT, logic.getFileName());
 	}
 	
