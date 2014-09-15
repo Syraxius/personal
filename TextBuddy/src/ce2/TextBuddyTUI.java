@@ -208,7 +208,7 @@ public class TextBuddyTUI {
 	}
 	
 	private String sortByName() {
-		return null;
+		return String.format(FORMAT_SORT, logic.getFileName());
 	}
 	
 	private String searchByKeyword(String keyword) {

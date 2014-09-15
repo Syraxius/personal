@@ -25,7 +25,7 @@ public class TUISortByNameTC1 {
 		assertEquals("added to test.txt: \"c\"", tui.processUserCommand("add c"));
 		assertEquals("added to test.txt: \"b\"", tui.processUserCommand("add b"));
 		assertEquals("added to test.txt: \"a\"", tui.processUserCommand("add a"));
-		assertEquals("test.txt has been sorted", tui.processUserCommand("sort"));		
+		assertEquals("test.txt has been sorted", tui.processUserCommand("sort"));
 		assertEquals("all content deleted from test.txt", tui.processUserCommand("clear"));
 	}
 
