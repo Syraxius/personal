@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This tests whether delete() can remove items appropriately.
+ * This tests whether clear() can clear appropriately.
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicDeleteTC1 {
+public class LogicClearTC1 {
 
 	TextBuddyLogic logic = new TextBuddyLogic("test.txt");
 	
@@ -29,8 +29,11 @@ public class LogicDeleteTC1 {
 
 	@Test
 	public void test() {
-		assertEquals("a",logic.delete(0));
-		assertEquals("b",logic.delete(0));
+		assertEquals("a",logic.getList().get(0));
+		assertEquals("b",logic.getList().get(1));
+		assertTrue(logic.clear());
+		assertEquals(null,logic.delete(0));
+		assertTrue(logic.clear());
 	}
 
 }
