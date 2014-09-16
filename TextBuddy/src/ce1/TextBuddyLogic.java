@@ -95,7 +95,7 @@ public class TextBuddyLogic {
 		boolean success;
 		try {
 			boolean isNull = content == null;
-			boolean isZeroLength = content.length() == 0;
+			boolean isZeroLength = content.trim().length() == 0;
 			if (isNull || isZeroLength) {
 				throw new NullPointerException();
 			}
