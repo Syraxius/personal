@@ -11,13 +11,15 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicAddTC1 {
+public class LogicDeleteTC1 {
 
 	TextBuddyLogic logic = new TextBuddyLogic("test.txt");
 	
 	@Before
 	public void setUp() throws Exception {
 		logic.clear();
+		logic.add("a");
+		logic.add("b");
 	}
 
 	@After
@@ -27,10 +29,8 @@ public class LogicAddTC1 {
 
 	@Test
 	public void test() {
-		assertTrue(logic.add("a"));
-		assertEquals("a",logic.getList().get(0));
-		assertTrue(logic.add("b"));
-		assertEquals("b",logic.getList().get(1));
+		assertEquals("a",logic.delete(0));
+		assertEquals("b",logic.delete(0));
 	}
 
 }
