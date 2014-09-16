@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This tests whether delete() can remove items appropriately.
+ * This tests whether save() saves appropriately.
  *
  * @author Ang Kah Min, Kelvin
  */
@@ -30,10 +30,12 @@ public class LogicSaveTC1 {
 	public void test() {
 		assertTrue(logic.save());
 		assertEquals(0,logic.getFileLineCount());
+		
 		assertTrue(logic.add("a"));
 		assertEquals(0,logic.getFileLineCount());
 		assertTrue(logic.save());
 		assertEquals(1,logic.getFileLineCount());
+		
 		assertTrue(logic.add("b"));
 		assertEquals(1,logic.getFileLineCount());
 		assertTrue(logic.save());
