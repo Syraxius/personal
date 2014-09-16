@@ -11,7 +11,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicAddTC1 {
+public class LogicAddTc1 {
 
 	TextBuddyLogic logic = new TextBuddyLogic("test.txt");
 	

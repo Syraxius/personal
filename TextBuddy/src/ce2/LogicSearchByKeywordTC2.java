@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicSearchByKeywordTC2 {
+public class LogicSearchByKeywordTc2 {
 	
 	TextBuddyLogic logic;
 

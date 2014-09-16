@@ -12,7 +12,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicDeleteTC2 {
+public class LogicDeleteTc2 {
 
 	TextBuddyLogic logic = new TextBuddyLogic("test.txt");
 	

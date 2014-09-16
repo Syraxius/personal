@@ -12,7 +12,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class LogicSortByNameTC1 {
+public class LogicSortByNameTc1 {
 
 	TextBuddyLogic logic;
 

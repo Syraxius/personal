@@ -11,7 +11,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TuiSortByNameTC2 {
+public class TuiSortByNameTc2 {
 	
 	TextBuddyTui tui;
 

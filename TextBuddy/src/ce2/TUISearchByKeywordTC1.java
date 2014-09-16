@@ -11,7 +11,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TuiSearchByKeywordTC1 {
+public class TuiSearchByKeywordTc1 {
 	
 	TextBuddyTui tui;
 
