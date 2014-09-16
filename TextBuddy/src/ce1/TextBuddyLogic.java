@@ -1,11 +1,13 @@
 package ce1;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This program handles the logic for the TextBuddy system.
@@ -13,20 +15,20 @@ import java.util.List;
  * This implementation uses an ArrayList<String> as the data structure and is
  * able to perform add, delete, clear and save functionalities.
  * 
- * The text file is only used as data storage and is written to disk by
- * invoking the save() method.
+ * The text file is only used as data storage and is written to disk by invoking
+ * the save() method.
  * 
  * @author Ang Kah Min, Kelvin
  */
 public class TextBuddyLogic {
 
 	// Warning Strings
-	
+
 	private static final String WARNING_READ = "Warning: Unable to read from file.";
 	private static final String WARNING_WRITE = "Warning: Unable to create new file.";
-	
+
 	// Objects Declaration
-	
+
 	Path path;
 	List<String> list;
 
@@ -87,6 +89,18 @@ public class TextBuddyLogic {
 
 	public boolean isFileReadableWritable() {
 		return Files.isReadable(path) && Files.isWritable(path);
+	}
+
+	public long getFileLineCount() {
+		try {
+			Charset charset = Charset.defaultCharset();
+			Stream<String> lines = Files.lines(path, charset);
+			long count = lines.count();
+			lines.close();
+			return count;
+		} catch (Exception e) {
+			return -1;
+		}
 	}
 
 	// Operation Methods
