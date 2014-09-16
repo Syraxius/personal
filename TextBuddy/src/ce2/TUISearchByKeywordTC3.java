@@ -11,14 +11,14 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TUISearchByKeywordTC3 {
+public class TuiSearchByKeywordTC3 {
 	
-	TextBuddyTUI tui;
+	TextBuddyTui tui;
 
 	@Before
 	public void setUp() throws Exception {
 		String[] args = {"test.txt"};
-		tui = new TextBuddyTUI(args);
+		tui = new TextBuddyTui(args);
 	}
 
 	@After

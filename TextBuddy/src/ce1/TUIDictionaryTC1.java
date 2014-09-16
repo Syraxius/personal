@@ -11,7 +11,7 @@ import org.junit.Test;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TUIDictionaryTC1 {
+public class TuiDictionaryTC1 {
 
 	TextBuddyTUI tui;
 	
