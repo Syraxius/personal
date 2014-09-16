@@ -111,7 +111,7 @@ public class TextBuddyTUI {
 
 	// Basic Operations
 
-	private String processUserCommand(String userCommand) {
+	String processUserCommand(String userCommand) {
 		String firstWord = getFirstWord(userCommand);
 		CommandType commandType = getCommandType(firstWord);
 		switch (commandType) {
