@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TextBuddyTUI {
+public class TextBuddyTui {
 
 	// Command Type Enumeration
 
@@ -75,7 +75,7 @@ public class TextBuddyTUI {
 
 	// High Level System Implementation
 
-	public TextBuddyTUI(String[] args) {
+	public TextBuddyTui(String[] args) {
 		systemAssertArguments(args);
 		systemInitialize(args);
 		systemAssertReady();

@@ -7,18 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This tests whether command dictionary works properly.
+ * This consists of test cases for TextBuddyTui class.
  *
  * @author Ang Kah Min, Kelvin
  */
-public class TuiDictionaryTc1 {
+public class TextBuddyTuiTest {
 
-	TextBuddyTUI tui;
+	TextBuddyTui tui;
 	
 	@Before
 	public void setUp() throws Exception {
 		String[] args = {"test.txt"};
-		tui = new TextBuddyTUI(args);
+		tui = new TextBuddyTui(args);
 	}
 
 	@After
@@ -27,11 +27,15 @@ public class TuiDictionaryTc1 {
 	}
 
 	@Test
-	public void test() {
+	public void dictionaryTc1() {
+		assertEquals("Command is invalid.",tui.processUserCommand("a hello"));
+	}
+
+	@Test
+	public void dictionaryTc2() {
 		assertEquals("added to test.txt: \"hello\"",tui.processUserCommand("add hello"));
 		assertEquals("added to test.txt: \"hello\"",tui.processUserCommand("-a hello"));
 		assertEquals("added to test.txt: \"hello\"",tui.processUserCommand("/a hello"));
-		assertEquals("Command is invalid.",tui.processUserCommand("a hello"));
 	}
 
 }
