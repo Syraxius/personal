@@ -146,6 +146,8 @@ public class TextBuddyLogic {
 	}
 	
 	public List<String> searchByKeyword(String keyword) {
-		return new ArrayList<String>();
+		ArrayList<String> searchList = new ArrayList<String>();
+		searchList.add(keyword);
+		return searchList;
 	}
 }
