@@ -33,13 +33,12 @@ public class TextBuddyTui {
 	private static final String[] DICTIONARY_CLEAR = { "clear", "-c", "/c" };
 	private static final String[] DICTIONARY_DELETE = { "delete", "-de", "/de" };
 	private static final String[] DICTIONARY_DISPLAY = { "display", "-di",
-														 "/di" };
+			"/di" };
 	private static final String[] DICTIONARY_SEARCH = { "search", "-se", "/se" };
 	private static final String[] DICTIONARY_SORT = { "sort", "-s", "/s" };
 	private static final String[] DICTIONARY_EXIT = { "exit", "-e", "/e" };
 	private static final String[] DICTIONARY_NTFS_INVALID = { "<", ">", ":",
-															  "\"", "/", "\\",
-															  "|", "?", "*" };
+			"\"", "/", "\\", "|", "?", "*" };
 
 	// Error Strings
 
@@ -186,7 +185,7 @@ public class TextBuddyTui {
 		boolean isDeleteSuccess = deletedLine != null;
 		if (isDeleteSuccess) {
 			return String.format(FORMAT_DELETE, logic.getFileName(),
-								 deletedLine);
+					deletedLine);
 		} else {
 			return ERROR_DELETE;
 		}
@@ -213,24 +212,11 @@ public class TextBuddyTui {
 	}
 
 	private String searchByKeyword(String userCommand) {
-		String keyword = removeFirstWord(userCommand);
-		List<String> searchList = logic.searchByKeyword(keyword);
-
-		boolean isListEmpty = searchList.isEmpty();
-		if (isListEmpty) {
-			return String.format(FORMAT_NOT_FOUND, keyword, logic.getFileName());
-		} else {
-			return listToHyphenatedString(searchList);
-		}
+		return null;
 	}
 
 	private String sortByName() {
-		boolean sortSuccess = logic.sortByName();
-		if (sortSuccess) {
-			return String.format(FORMAT_SORT, logic.getFileName());
-		} else {
-			return ERROR_SORT;
-		}
+		return null;
 	}
 
 	private void exit() {

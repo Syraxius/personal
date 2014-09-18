@@ -142,18 +142,10 @@ public class TextBuddyLogic {
 	}
 	
 	public boolean sortByName() {
-		list.sort(String.CASE_INSENSITIVE_ORDER);
-		return true;
+		return false;
 	}
 	
 	public List<String> searchByKeyword(String keyword) {
-		List<String> searchList = new ArrayList<String>();
-		for (String line:list) {
-			boolean containsKeyword = line.contains(keyword);
-			if (containsKeyword) {
-				searchList.add(line);
-			}
-		}
-		return searchList;
+		return null;
 	}
 }
