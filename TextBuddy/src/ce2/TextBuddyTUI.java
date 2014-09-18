@@ -1,6 +1,5 @@
 package ce2;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -228,7 +227,7 @@ public class TextBuddyTui {
 		if (sortSuccess) {
 			return String.format(FORMAT_SORT, logic.getFileName());
 		} else {
-			return null;
+			return String.format(ERROR_SORT, logic.getFileName());
 		}
 	}
 
