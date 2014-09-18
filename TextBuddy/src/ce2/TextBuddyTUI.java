@@ -1,5 +1,6 @@
 package ce2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -213,7 +214,13 @@ public class TextBuddyTui {
 
 	private String searchByKeyword(String userCommand) {
 		String keyword = removeFirstWord(userCommand);
-		return String.format(FORMAT_NOT_FOUND, keyword, logic.getFileName());
+		List<String> searchList = logic.searchByKeyword(keyword);
+		boolean searchSuccess = !searchList.isEmpty();
+		if (searchSuccess) {
+			return listToHyphenatedString(searchList);
+		} else {
+			return String.format(FORMAT_NOT_FOUND, keyword, logic.getFileName());
+		}
 	}
 
 	private String sortByName() {
