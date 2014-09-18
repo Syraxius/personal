@@ -216,7 +216,12 @@ public class TextBuddyTui {
 	}
 
 	private String sortByName() {
-		return String.format(FORMAT_SORT, logic.getFileName());
+		boolean sortSuccess = logic.sortByName();
+		if (sortSuccess) {
+			return String.format(FORMAT_SORT, logic.getFileName());
+		} else {
+			return null;
+		}
 	}
 
 	private void exit() {
