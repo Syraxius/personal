@@ -69,6 +69,17 @@ public class TextBuddyLogicTest {
 		assertEquals("bananapie",list.get(1));
 	}
 	
+	//Search case-insensitive.
+	@Test
+	public void searchByKeywordTc6() {
+		logic.addLine("applepie");
+		logic.addLine("applebanana");
+		logic.addLine("bananapie");
+		List<String> list = logic.searchByKeyword("Banana");
+		assertEquals("applebanana",list.get(0));
+		assertEquals("bananapie",list.get(1));
+	}
+	
 	//Test if sorting returns success on an empty list.
 	@Test
 	public void sortByNameTc1() {

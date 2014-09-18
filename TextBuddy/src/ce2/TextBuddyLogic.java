@@ -148,7 +148,9 @@ public class TextBuddyLogic {
 	public List<String> searchByKeyword(String keyword) {
 		ArrayList<String> searchList = new ArrayList<String>();
 		for (String line:list) {
-			if (line.contains(keyword)) {
+			String lineLowerCase = line.toLowerCase();
+			String keywordLowerCase = keyword.toLowerCase();
+			if (lineLowerCase.contains(keywordLowerCase)) {
 				searchList.add(line);
 			}
 		}
