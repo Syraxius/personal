@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -142,6 +143,7 @@ public class TextBuddyLogic {
 	}
 	
 	public boolean sortByName() {
+		list.sort(String.CASE_INSENSITIVE_ORDER);
 		return true;
 	}
 	
