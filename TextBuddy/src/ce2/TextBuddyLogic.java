@@ -142,7 +142,7 @@ public class TextBuddyLogic {
 	}
 	
 	public boolean sortByName() {
-		return false;
+		return true;
 	}
 	
 	public List<String> searchByKeyword(String keyword) {
